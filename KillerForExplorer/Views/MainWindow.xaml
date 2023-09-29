@@ -6,8 +6,8 @@
         xmlns:local="clr-namespace:KillerForExplorer.ViewModels"
         mc:Ignorable="d"
         Title="Killer"
-        Height="200"
-        Width="300"
+        Height="100"
+        Width="200"
         WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize">
     

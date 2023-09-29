@@ -23,6 +23,7 @@ namespace KillerForExplorer.ViewModels
             ButtonText = "Off!";
         }
 
+        #region Command
         public RelayCommand KillerAndStartExplorerCommand
             => _killerAndStartExplorerCommand ?? (_killerAndStartExplorerCommand = new RelayCommand(() =>
             {
@@ -38,8 +39,8 @@ namespace KillerForExplorer.ViewModels
                         break;
                 }
             }));
+        #endregion
 
-        #region Command
         private void KillerExplorer()
         {
             Process.Start(@"C:\Windows\System32\taskkill.exe", @"/F /IM explorer.exe");
@@ -49,6 +50,5 @@ namespace KillerForExplorer.ViewModels
         {
             Process.Start(@"C:\Windows\explorer");
         }
-        #endregion
     }
 }
