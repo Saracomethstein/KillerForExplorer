@@ -1,12 +1,13 @@
 ﻿using KillerForExplorer.Models;
+using System;
+using System.Diagnostics;
 
 namespace KillerForExplorer.ViewModels
 {
     internal class MainWindowViewModel : ViewModelBase
     {
         private string _buttonText;
-        private RelayCommand _killerExplorerCommand;
-        private RelayCommand _startExplorerCommand;
+        private RelayCommand _killerAndStartExplorerCommand;
 
         public string ButtonText
         {
@@ -18,16 +19,39 @@ namespace KillerForExplorer.ViewModels
             }
         }
 
-        public RelayCommand KillerExplorerCommand
-            => _killerExplorerCommand ?? (_killerExplorerCommand = new RelayCommand(() =>
+        public RelayCommand KillerAndStartExplorerCommand
+            => _killerAndStartExplorerCommand ?? (_killerAndStartExplorerCommand = new RelayCommand(() =>
             {
-
+                ButtonText = "Off!";
+                switch (ButtonText)
+                {
+                    case "Off!":
+                        KillerExplorer();
+                        break;
+                    case "On!":
+                        StartExplorer();
+                        break;
+                }
             }));
 
-        public RelayCommand StartExplorerCommand
-            => _killerExplorerCommand ?? (_startExplorerCommand = new RelayCommand(() =>
-            {
+        #region Command
+        private void KillerExplorer()
+        {
+            Process.Start(@"C:\Windows\System32\taskkill.exe", @"/F /IM explorer.exe");
+        }
 
-            }));
+        private void StartExplorer()
+        {
+            try
+            {
+                Process.Start("explorer.exe");
+                Console.WriteLine("Explorer is running.");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error starting Explorer: {ex.Message}");
+            }
+        }
+        #endregion
     }
 }
