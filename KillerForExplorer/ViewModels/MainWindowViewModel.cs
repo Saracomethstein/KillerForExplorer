@@ -1,5 +1,4 @@
 ﻿using KillerForExplorer.Models;
-using System;
 using System.Diagnostics;
 
 namespace KillerForExplorer.ViewModels
@@ -19,17 +18,23 @@ namespace KillerForExplorer.ViewModels
             }
         }
 
+        public MainWindowViewModel()
+        {
+            ButtonText = "Off!";
+        }
+
         public RelayCommand KillerAndStartExplorerCommand
             => _killerAndStartExplorerCommand ?? (_killerAndStartExplorerCommand = new RelayCommand(() =>
             {
-                ButtonText = "Off!";
                 switch (ButtonText)
                 {
                     case "Off!":
                         KillerExplorer();
+                        ButtonText = "On!";
                         break;
                     case "On!":
                         StartExplorer();
+                        ButtonText = "Off!";
                         break;
                 }
             }));
@@ -42,15 +47,7 @@ namespace KillerForExplorer.ViewModels
 
         private void StartExplorer()
         {
-            try
-            {
-                Process.Start("explorer.exe");
-                Console.WriteLine("Explorer is running.");
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Error starting Explorer: {ex.Message}");
-            }
+            Process.Start(@"C:\Windows\explorer");
         }
         #endregion
     }
