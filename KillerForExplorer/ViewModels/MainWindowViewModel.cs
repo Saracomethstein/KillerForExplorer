@@ -27,19 +27,25 @@ namespace KillerForExplorer.ViewModels
         public RelayCommand KillerAndStartExplorerCommand
             => _killerAndStartExplorerCommand ?? (_killerAndStartExplorerCommand = new RelayCommand(() =>
             {
-                switch (ButtonText)
-                {
-                    case "Off!":
-                        KillerExplorer();
-                        ButtonText = "On!";
-                        break;
-                    case "On!":
-                        StartExplorer();
-                        ButtonText = "Off!";
-                        break;
-                }
+                StartOrKill();
             }));
+
         #endregion
+
+        private void StartOrKill()
+        {
+            switch (ButtonText)
+            {
+                case "Off!":
+                    KillerExplorer();
+                    ButtonText = "On!";
+                    break;
+                case "On!":
+                    StartExplorer();
+                    ButtonText = "Off!";
+                    break;
+            }
+        }
 
         private void KillerExplorer()
         {

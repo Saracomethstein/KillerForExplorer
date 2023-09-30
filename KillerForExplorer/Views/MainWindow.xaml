@@ -14,6 +14,11 @@
     <Window.DataContext>
         <local:MainWindowViewModel/>
     </Window.DataContext>
+
+    <Window.InputBindings>
+        <KeyBinding Command="{Binding Path=KillerAndStartExplorerCommand}"
+                    Key="A" Modifiers="Ctrl+Shift"/>
+    </Window.InputBindings>
     
     <Grid>
 
