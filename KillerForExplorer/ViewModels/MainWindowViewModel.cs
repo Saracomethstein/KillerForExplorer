@@ -1,6 +1,7 @@
 ﻿using KillerForExplorer.Models;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
+using System.Windows;
 
 namespace KillerForExplorer.ViewModels
 {
@@ -36,13 +37,13 @@ namespace KillerForExplorer.ViewModels
         public RelayCommand ExitAppCommand
             => _exitAppCommand ?? (_exitAppCommand = new RelayCommand(() =>
             {
-
+                ExitApploication();
             }));
 
         public RelayCommand MiniAppCommand
             => _miniAppCommand ?? (_miniAppCommand = new RelayCommand(() =>
             {
-
+                MiniApplication();
             }));
         #endregion
 
@@ -58,6 +59,21 @@ namespace KillerForExplorer.ViewModels
                     StartExplorer();
                     ButtonText = "Off!";
                     break;
+            }
+        }
+
+        private void ExitApploication()
+        {
+            Process.Start(@"C:\Windows\explorer");
+            Process.GetCurrentProcess().Kill();
+        }
+
+        private void MiniApplication()
+        {
+            var window = System.Windows.Application.Current.Windows[0];
+            if (window != null)
+            {
+                window.WindowState = WindowState.Minimized;
             }
         }
 
