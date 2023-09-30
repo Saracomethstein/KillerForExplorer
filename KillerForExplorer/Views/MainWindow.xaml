@@ -8,6 +8,7 @@
         Title="Killer"
         Height="100"
         Width="200"
+        WindowStyle="None"
         WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize">
     
@@ -17,12 +18,26 @@
 
     <Window.InputBindings>
         <KeyBinding Command="{Binding Path=KillerAndStartExplorerCommand}"
-                    Key="A" Modifiers="Ctrl+Shift"/>
+                    Key="A" Modifiers="Ctrl"/>
     </Window.InputBindings>
     
     <Grid>
 
-        <Button Margin="10,10,10,10"
+        <Label Style="{DynamicResource MainLabelStyle}"
+               Margin="0,0,0,80"/>
+
+        <Button Style="{DynamicResource ExitButtonStyle}"
+                Margin="180,0,0,80"
+                Content="X"
+                Command="{Binding Path=ExitAppCommand}"/>
+
+        <Button Style="{DynamicResource MainButtonStyle}"
+                Margin="160,0,20,80"
+                Content="_"
+                Command="{Binding Path=MiniAppCommand}"/>
+
+        <Button Style="{DynamicResource MainButtonStyle}"
+                Margin="10,30,10,10"
                 FontFamily="Helvetica"
                 FontSize="20"
                 Content="{Binding Path=ButtonText}"

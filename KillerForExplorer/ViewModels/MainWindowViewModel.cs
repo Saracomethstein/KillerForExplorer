@@ -1,5 +1,6 @@
 ﻿using KillerForExplorer.Models;
 using System.Diagnostics;
+using System.Runtime.CompilerServices;
 
 namespace KillerForExplorer.ViewModels
 {
@@ -7,6 +8,8 @@ namespace KillerForExplorer.ViewModels
     {
         private string _buttonText;
         private RelayCommand _killerAndStartExplorerCommand;
+        private RelayCommand _exitAppCommand;
+        private RelayCommand _miniAppCommand;
 
         public string ButtonText
         {
@@ -30,6 +33,17 @@ namespace KillerForExplorer.ViewModels
                 StartOrKill();
             }));
 
+        public RelayCommand ExitAppCommand
+            => _exitAppCommand ?? (_exitAppCommand = new RelayCommand(() =>
+            {
+
+            }));
+
+        public RelayCommand MiniAppCommand
+            => _miniAppCommand ?? (_miniAppCommand = new RelayCommand(() =>
+            {
+
+            }));
         #endregion
 
         private void StartOrKill()

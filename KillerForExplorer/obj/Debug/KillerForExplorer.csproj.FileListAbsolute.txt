@@ -15,3 +15,4 @@ C:\Users\adels\OneDrive\Desktop\All\Dev\C#\GitHub\KillerForExplorer\KillerForExp
 C:\Users\adels\OneDrive\Desktop\All\Dev\C#\GitHub\KillerForExplorer\KillerForExplorer\obj\Debug\KillerForExplorer.csproj.CoreCompileInputs.cache
 C:\Users\adels\OneDrive\Desktop\All\Dev\C#\GitHub\KillerForExplorer\KillerForExplorer\obj\Debug\KillerForExplorer.exe
 C:\Users\adels\OneDrive\Desktop\All\Dev\C#\GitHub\KillerForExplorer\KillerForExplorer\obj\Debug\KillerForExplorer.pdb
+C:\Users\adels\OneDrive\Desktop\All\Dev\C#\GitHub\KillerForExplorer\KillerForExplorer\obj\Debug\App.baml
