@@ -1,6 +1,5 @@
 ﻿using KillerForExplorer.Models;
 using System.Diagnostics;
-using System.Runtime.CompilerServices;
 using System.Windows;
 
 namespace KillerForExplorer.ViewModels
@@ -11,6 +10,7 @@ namespace KillerForExplorer.ViewModels
         private RelayCommand _killerAndStartExplorerCommand;
         private RelayCommand _exitAppCommand;
         private RelayCommand _miniAppCommand;
+        private RelayCommand _miniToTrayCommand;
 
         public string ButtonText
         {
@@ -45,6 +45,12 @@ namespace KillerForExplorer.ViewModels
             {
                 MiniApplication();
             }));
+
+        public RelayCommand MiniToTrayCommand
+            => _miniToTrayCommand ?? (_miniToTrayCommand = new RelayCommand(() =>
+            {
+                MiniToTray();
+            }));
         #endregion
 
         private void StartOrKill()
@@ -60,6 +66,12 @@ namespace KillerForExplorer.ViewModels
                     ButtonText = "Off!";
                     break;
             }
+        }
+
+        private void MiniToTray()
+        {
+            TrayManager trayManager = new TrayManager(Application.Current.MainWindow as MainWindow);
+            trayManager.MinimizeToTray();
         }
 
         private void ExitApploication()
