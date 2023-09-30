@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Windows.Forms;
 using System.IO;
+using System.Windows;
 
 namespace KillerForExplorer.Models
 {
     internal class TrayManager
     {
         private NotifyIcon notifyIcon;
+        private bool isAppMinimized;
         private MainWindow mainWindow;
 
         public TrayManager(MainWindow mainWindow)
@@ -20,7 +22,7 @@ namespace KillerForExplorer.Models
             notifyIcon = new NotifyIcon();
             Stream iconStream = System.Windows.Application.GetResourceStream(new Uri("pack://application:,,,/Resources/gun.ico")).Stream;
             notifyIcon.Icon = new System.Drawing.Icon(iconStream);
-            notifyIcon.Visible = true;
+            notifyIcon.Visible = false;
             notifyIcon.Click += NotifyIcon_Click;
         }
 
@@ -28,11 +30,30 @@ namespace KillerForExplorer.Models
         {
             mainWindow.Show();
             mainWindow.WindowState = System.Windows.WindowState.Normal;
+            notifyIcon.Visible = false;
+            isAppMinimized = false;
         }
 
-        public void MinimizeToTray()
+        private void MinimizeToTray()
         {
             mainWindow.Hide();
+            notifyIcon.Visible = true;
+            isAppMinimized = true;
+        }
+
+        public void ToggleTrayVisibility()
+        {
+            if (isAppMinimized)
+            {
+                mainWindow.Show();
+                mainWindow.WindowState = System.Windows.WindowState.Normal;
+                notifyIcon.Visible = false;
+                isAppMinimized = false;
+            }
+            else
+            {
+                MinimizeToTray();
+            }
         }
     }
 }

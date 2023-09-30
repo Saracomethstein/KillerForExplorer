@@ -74,7 +74,7 @@ namespace KillerForExplorer.ViewModels
             TrayManager trayManager = new TrayManager(Application.Current.MainWindow as MainWindow);
             if(trayManager != null)
             {
-                trayManager.MinimizeToTray();
+                trayManager.ToggleTrayVisibility();
             }
         }
 
