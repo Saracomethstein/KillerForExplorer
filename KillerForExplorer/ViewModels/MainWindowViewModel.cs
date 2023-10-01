@@ -11,6 +11,8 @@ namespace KillerForExplorer.ViewModels
     {
         private string _startStopButton;
         private string _settingsButton;
+        private string _foregroundForSet;
+        private string _foregroundForStartStop;
         private int _actualWidth;
         private int _actualHeight;
         private RelayCommand _killerAndStartExplorerCommand;
@@ -19,6 +21,7 @@ namespace KillerForExplorer.ViewModels
         private RelayCommand _miniToTrayCommand;
         private RelayCommand _settingsCommand;
 
+        #region Properties
         public string StartStopButtonText
         {
             get { return _startStopButton; }
@@ -59,12 +62,33 @@ namespace KillerForExplorer.ViewModels
             }
         }
 
+        public string ForegroundForSettings
+        {
+            get { return _foregroundForSet; }
+            set
+            {
+                _foregroundForSet = value;
+                NotifyPropertyChanged(nameof(ForegroundForSettings));
+            }
+        }
+
+        public string ForegroundForStartStop
+        {
+            get { return _foregroundForStartStop; }
+            set
+            {
+                _foregroundForStartStop = value;
+                NotifyPropertyChanged(nameof(ForegroundForStartStop));
+            }
+        }
+        #endregion
+
         public MainWindowViewModel()
         {
-            StartStopButtonText = "▶️";
-            SettingsButtonText = "1"; // ⚙
-            ActualHeight = 30; // 30
-            ActualWidth = 200; // 200
+            StartStopButtonText = "▶";
+            SettingsButtonText = "⚙";
+            ForegroundForSettings = "Black";
+            ForegroundForStartStop = "Green";
         }
 
         #region Command
@@ -95,36 +119,39 @@ namespace KillerForExplorer.ViewModels
         public RelayCommand SettingsCommand
             => _settingsCommand ?? (_settingsCommand = new RelayCommand(() =>
             {
-                OpenSettingsWindow();
+                OpenOrCloseSet();
             }));
         #endregion
 
         private void StartOrKill()
         {
-            switch (StartStopButtonText)
+            switch (ForegroundForStartStop)
             {
-                case "▶️":
+                case "Green":
                     KillerExplorer();
                     StartStopButtonText = "◼️";
+                    ForegroundForStartStop = "Red";
+
                     break;
-                case "◼️":
+                case "Red":
                     StartExplorer();
                     StartStopButtonText = "▶️";
+                    ForegroundForStartStop = "Green";
                     break;
             }
         }
 
         private void OpenOrCloseSet()
         {
-            switch (SettingsButtonText)
+            switch (ForegroundForSettings)
             {
-                case "1":
+                case "Black":
                     OpenSettingsWindow();
-                    SettingsButtonText = "2";
+                    ForegroundForSettings = "Blue";
                     break;
-                case "2":
+                case "Blue":
                     CloseSettingWindow();
-                    SettingsButtonText = "1";
+                    ForegroundForSettings = "Black";
                     break;
             }
         }

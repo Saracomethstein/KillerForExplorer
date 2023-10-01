@@ -67,8 +67,8 @@
                 VerticalAlignment="Top"
                 FontFamily="Helvetica"
                 FontSize="13"
-                VerticalContentAlignment="Center"
-                
+                Foreground="{Binding Path=ForegroundForStartStop}"
+                VerticalContentAlignment="Center" 
                 HorizontalContentAlignment="Center"
                 Content="{Binding Path=StartStopButtonText}"
                 Command="{Binding Path=KillerAndStartExplorerCommand}"
@@ -81,7 +81,8 @@
                 VerticalContentAlignment="Center"
                 HorizontalContentAlignment="Center"
                 Command="{Binding Path=SettingsCommand}"
-                ToolTip="Settings"/>
+                ToolTip="Settings"
+                Foreground="{Binding Path=ForegroundForSettings}"/>
 
         </Grid>
     </Border>
