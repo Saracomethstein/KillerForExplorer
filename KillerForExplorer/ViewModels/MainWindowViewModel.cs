@@ -7,25 +7,37 @@ namespace KillerForExplorer.ViewModels
 {
     internal class MainWindowViewModel : ViewModelBase
     {
-        private string _buttonText;
+        private string _startStopButton;
+        private string _settingsButton;
         private RelayCommand _killerAndStartExplorerCommand;
         private RelayCommand _exitAppCommand;
         private RelayCommand _miniAppCommand;
         private RelayCommand _miniToTrayCommand;
 
-        public string ButtonText
+        public string StartStopButtonText
         {
-            get { return _buttonText; }
+            get { return _startStopButton; }
             set
             {
-                _buttonText = value;
-                NotifyPropertyChanged(nameof(ButtonText));
+                _startStopButton = value;
+                NotifyPropertyChanged(nameof(StartStopButtonText));
+            }
+        }
+
+        public string SettingsButtonText
+        {
+            get { return _settingsButton; }
+            set
+            {
+                _settingsButton = value;
+                NotifyPropertyChanged(nameof(SettingsButtonText));
             }
         }
 
         public MainWindowViewModel()
         {
-            ButtonText = "Off!";
+            StartStopButtonText = "▶️";
+            SettingsButtonText = "⚙";
         }
 
         #region Command
@@ -56,15 +68,15 @@ namespace KillerForExplorer.ViewModels
 
         private void StartOrKill()
         {
-            switch (ButtonText)
+            switch (StartStopButtonText)
             {
-                case "Off!":
+                case "▶️":
                     KillerExplorer();
-                    ButtonText = "On!";
+                    StartStopButtonText = "◼️";
                     break;
-                case "On!":
+                case "◼️":
                     StartExplorer();
-                    ButtonText = "Off!";
+                    StartStopButtonText = "▶️";
                     break;
             }
         }

@@ -1,4 +1,5 @@
-﻿<Window x:Class="KillerForExplorer.MainWindow"
+﻿<Window Style="{DynamicResource MainWindowStyle}"
+        x:Class="KillerForExplorer.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -10,57 +11,68 @@
         Width="200"
         WindowStyle="None"
         WindowStartupLocation="CenterScreen"
-        ResizeMode="NoResize">
-    
+        ResizeMode="NoResize"
+        AllowsTransparency="True"
+        Background="Transparent">
+
     <Window.DataContext>
-        <local:MainWindowViewModel/>
-    </Window.DataContext>
+            <local:MainWindowViewModel/>
+        </Window.DataContext>
 
-    <Window.InputBindings>
-        <KeyBinding Command="{Binding Path=KillerAndStartExplorerCommand}"
+        <Window.InputBindings>
+            <KeyBinding Command="{Binding Path=KillerAndStartExplorerCommand}"
                     Key="A" Modifiers="Ctrl"/>
-    </Window.InputBindings>
-    
-    <Grid>
+        </Window.InputBindings>
 
-        <Label Style="{DynamicResource MainLabelStyle}"
+    <Border CornerRadius="10"
+            BorderBrush="LightGray"
+            BorderThickness="4">
+
+        <Grid>
+
+            <Label Style="{DynamicResource MainLabelStyle}"
                Margin="0,0,0,0"
                MouseLeftButtonDown="Label_MouseLeftButtonDown"/>
 
-        <Button Style="{DynamicResource ExitButtonStyle}"
+            <Button Style="{DynamicResource ExitButtonStyle}"
                 Margin="170,0,0,0"
                 Content="X"
                 VerticalContentAlignment="Center"
                 HorizontalContentAlignment="Center"
-                Command="{Binding Path=ExitAppCommand}"/>
+                Command="{Binding Path=ExitAppCommand}"
+                ToolTip="Exit"/>
 
-        <Button Style="{DynamicResource MainButtonStyle}"
+            <Button Style="{DynamicResource MainButtonStyle}"
                 Margin="140,0,30,0"
                 Content="_"
                 VerticalContentAlignment="Center"
                 HorizontalContentAlignment="Center"
-                Command="{Binding Path=MiniAppCommand}"/>
+                Command="{Binding Path=MiniAppCommand}"
+                ToolTip="Minimize"/>
 
-        <Button Style="{DynamicResource MainButtonStyle}"
+            <Button Style="{DynamicResource MainButtonStyle}"
                 Margin="110,0,60,0"
                 Content="↷"
+                FontSize="14"
                 VerticalContentAlignment="Center"
                 HorizontalContentAlignment="Center"
                 Command="{Binding Path=MiniToTrayCommand}"/>
 
-        <Button Style="{DynamicResource MainButtonStyle}"
+            <Button Style="{DynamicResource MainButtonStyle}"
                 Margin="30,0,140,0"
                 FontFamily="Helvetica"
+                FontSize="13"
                 VerticalContentAlignment="Center"
                 HorizontalContentAlignment="Center"
-                Content="{Binding Path=ButtonText}"
+                Content="{Binding Path=StartStopButtonText}"
                 Command="{Binding Path=KillerAndStartExplorerCommand}"/>
 
-        <Button Style="{DynamicResource MainButtonStyle}"
+            <Button Style="{DynamicResource MainButtonStyle}"
                 Margin="0,0,170,0"
-                Content="S"
+                Content="{Binding Path=SettingsButtonText}"
                 VerticalContentAlignment="Center"
                 HorizontalContentAlignment="Center"/>
 
-    </Grid>
+        </Grid>
+    </Border>
 </Window>
