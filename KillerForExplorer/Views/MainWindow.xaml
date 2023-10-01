@@ -37,6 +37,7 @@
             <Button Style="{DynamicResource ExitButtonStyle}"
                 Margin="170,0,0,0"
                 Content="X"
+                VerticalAlignment="Top"
                 VerticalContentAlignment="Center"
                 HorizontalContentAlignment="Center"
                 Command="{Binding Path=ExitAppCommand}"
@@ -44,6 +45,7 @@
 
             <Button Style="{DynamicResource MainButtonStyle}"
                 Margin="140,0,30,0"
+                VerticalAlignment="Top"
                 Content="_"
                 VerticalContentAlignment="Center"
                 HorizontalContentAlignment="Center"
@@ -52,26 +54,34 @@
 
             <Button Style="{DynamicResource MainButtonStyle}"
                 Margin="110,0,60,0"
+                VerticalAlignment="Top"
                 Content="↷"
                 FontSize="14"
                 VerticalContentAlignment="Center"
                 HorizontalContentAlignment="Center"
-                Command="{Binding Path=MiniToTrayCommand}"/>
+                Command="{Binding Path=MiniToTrayCommand}"
+                ToolTip="Minimize to tray"/>
 
             <Button Style="{DynamicResource MainButtonStyle}"
                 Margin="30,0,140,0"
+                VerticalAlignment="Top"
                 FontFamily="Helvetica"
                 FontSize="13"
                 VerticalContentAlignment="Center"
+                
                 HorizontalContentAlignment="Center"
                 Content="{Binding Path=StartStopButtonText}"
-                Command="{Binding Path=KillerAndStartExplorerCommand}"/>
+                Command="{Binding Path=KillerAndStartExplorerCommand}"
+                ToolTip="Start/Stop"/>
 
             <Button Style="{DynamicResource MainButtonStyle}"
                 Margin="0,0,170,0"
+                VerticalAlignment="Top"
                 Content="{Binding Path=SettingsButtonText}"
                 VerticalContentAlignment="Center"
-                HorizontalContentAlignment="Center"/>
+                HorizontalContentAlignment="Center"
+                Command="{Binding Path=SettingsCommand}"
+                ToolTip="Settings"/>
 
         </Grid>
     </Border>

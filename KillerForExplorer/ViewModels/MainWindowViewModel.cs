@@ -2,6 +2,8 @@
 using System;
 using System.Diagnostics;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Media.Animation;
 
 namespace KillerForExplorer.ViewModels
 {
@@ -9,10 +11,13 @@ namespace KillerForExplorer.ViewModels
     {
         private string _startStopButton;
         private string _settingsButton;
+        private int _actualWidth;
+        private int _actualHeight;
         private RelayCommand _killerAndStartExplorerCommand;
         private RelayCommand _exitAppCommand;
         private RelayCommand _miniAppCommand;
         private RelayCommand _miniToTrayCommand;
+        private RelayCommand _settingsCommand;
 
         public string StartStopButtonText
         {
@@ -34,10 +39,32 @@ namespace KillerForExplorer.ViewModels
             }
         }
 
+        public int ActualWidth
+        {
+            get { return _actualWidth; }
+            set
+            {
+                _actualWidth = value;
+                NotifyPropertyChanged(nameof(ActualWidth));
+            }
+        }
+
+        public int ActualHeight
+        {
+            get { return _actualHeight; }
+            set
+            {
+                _actualHeight = value;
+                NotifyPropertyChanged(nameof(ActualHeight));
+            }
+        }
+
         public MainWindowViewModel()
         {
             StartStopButtonText = "▶️";
-            SettingsButtonText = "⚙";
+            SettingsButtonText = "1"; // ⚙
+            ActualHeight = 30; // 30
+            ActualWidth = 200; // 200
         }
 
         #region Command
@@ -64,6 +91,12 @@ namespace KillerForExplorer.ViewModels
             {
                 MiniToTray();
             }));
+
+        public RelayCommand SettingsCommand
+            => _settingsCommand ?? (_settingsCommand = new RelayCommand(() =>
+            {
+                OpenSettingsWindow();
+            }));
         #endregion
 
         private void StartOrKill()
@@ -79,6 +112,81 @@ namespace KillerForExplorer.ViewModels
                     StartStopButtonText = "▶️";
                     break;
             }
+        }
+
+        private void OpenOrCloseSet()
+        {
+            switch (SettingsButtonText)
+            {
+                case "1":
+                    OpenSettingsWindow();
+                    SettingsButtonText = "2";
+                    break;
+                case "2":
+                    CloseSettingWindow();
+                    SettingsButtonText = "1";
+                    break;
+            }
+        }
+
+        private void OpenSettingsWindow()
+        {
+            var window = System.Windows.Application.Current.Windows[0];
+            DoubleAnimation widthAnimation = new DoubleAnimation
+            {
+                From = window.ActualWidth,
+                To = window.ActualWidth,
+                Duration = TimeSpan.FromSeconds(0.5)
+            };
+
+            DoubleAnimation heightAnimation = new DoubleAnimation
+            {
+                From = window.ActualHeight,
+                To = window.ActualHeight + 80,
+                Duration = TimeSpan.FromSeconds(0.5)
+            };
+
+            Storyboard storyboard = new Storyboard();
+            storyboard.Children.Add(widthAnimation);
+            storyboard.Children.Add(heightAnimation);
+
+            Storyboard.SetTarget(widthAnimation, window);
+            Storyboard.SetTargetProperty(widthAnimation, new PropertyPath(Button.WidthProperty));
+
+            Storyboard.SetTarget(heightAnimation, window);
+            Storyboard.SetTargetProperty(heightAnimation, new PropertyPath(Button.HeightProperty));
+
+            storyboard.Begin();
+        }
+
+        private void CloseSettingWindow()
+        {
+            var window = System.Windows.Application.Current.Windows[0];
+            DoubleAnimation widthAnimation = new DoubleAnimation
+            {
+                From = window.ActualWidth,
+                To = window.ActualWidth,
+                Duration = TimeSpan.FromSeconds(0.5)
+            };
+
+            DoubleAnimation heightAnimation = new DoubleAnimation
+            {
+                From = window.ActualHeight,
+                To = window.ActualHeight - 80,
+                Duration = TimeSpan.FromSeconds(0.5)
+            };
+
+            Storyboard storyboard = new Storyboard();
+            storyboard.Children.Add(widthAnimation);
+            storyboard.Children.Add(heightAnimation);
+
+            Storyboard.SetTarget(widthAnimation, window);
+            Storyboard.SetTargetProperty(widthAnimation, new PropertyPath(Button.WidthProperty));
+
+            Storyboard.SetTarget(heightAnimation, window);
+            Storyboard.SetTargetProperty(heightAnimation, new PropertyPath(Button.HeightProperty));
+
+            storyboard.Begin();
         }
 
         private void MiniToTray()
