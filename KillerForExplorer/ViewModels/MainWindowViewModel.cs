@@ -13,6 +13,7 @@ namespace KillerForExplorer.ViewModels
         private string _settingsButton;
         private string _foregroundForSet;
         private string _foregroundForStartStop;
+        private string _shortcutSymbol;
         private int _actualWidth;
         private int _actualHeight;
         private RelayCommand _killerAndStartExplorerCommand;
@@ -79,6 +80,16 @@ namespace KillerForExplorer.ViewModels
             {
                 _foregroundForStartStop = value;
                 NotifyPropertyChanged(nameof(ForegroundForStartStop));
+            }
+        }
+
+        public string ShortcutSymbol
+        {
+            get { return _shortcutSymbol; }
+            set
+            {
+                _shortcutSymbol = value;
+                NotifyPropertyChanged(nameof(ShortcutSymbol));
             }
         }
         #endregion
@@ -163,14 +174,14 @@ namespace KillerForExplorer.ViewModels
             {
                 From = window.ActualWidth,
                 To = window.ActualWidth,
-                Duration = TimeSpan.FromSeconds(0.5)
+                Duration = TimeSpan.FromSeconds(0.3)
             };
 
             DoubleAnimation heightAnimation = new DoubleAnimation
             {
                 From = window.ActualHeight,
                 To = window.ActualHeight + 80,
-                Duration = TimeSpan.FromSeconds(0.5)
+                Duration = TimeSpan.FromSeconds(0.3)
             };
 
             Storyboard storyboard = new Storyboard();
@@ -193,14 +204,14 @@ namespace KillerForExplorer.ViewModels
             {
                 From = window.ActualWidth,
                 To = window.ActualWidth,
-                Duration = TimeSpan.FromSeconds(0.5)
+                Duration = TimeSpan.FromSeconds(0.3)
             };
 
             DoubleAnimation heightAnimation = new DoubleAnimation
             {
                 From = window.ActualHeight,
                 To = window.ActualHeight - 80,
-                Duration = TimeSpan.FromSeconds(0.5)
+                Duration = TimeSpan.FromSeconds(0.3)
             };
 
             Storyboard storyboard = new Storyboard();

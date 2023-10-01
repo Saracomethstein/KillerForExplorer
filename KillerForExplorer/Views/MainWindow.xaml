@@ -16,13 +16,13 @@
         Background="Transparent">
 
     <Window.DataContext>
-            <local:MainWindowViewModel/>
-        </Window.DataContext>
+        <local:MainWindowViewModel/>
+    </Window.DataContext>
 
-        <Window.InputBindings>
-            <KeyBinding Command="{Binding Path=KillerAndStartExplorerCommand}"
-                    Key="A" Modifiers="Ctrl"/>
-        </Window.InputBindings>
+    <Window.InputBindings>
+        <KeyBinding Command="{Binding Path=KillerAndStartExplorerCommand}"
+                    Key="{Binding Path=ShortcutSymbol}" Modifiers="Ctrl"/>
+    </Window.InputBindings>
 
     <Border CornerRadius="10"
             BorderBrush="LightGray"
@@ -66,7 +66,7 @@
                 Margin="30,0,140,0"
                 VerticalAlignment="Top"
                 FontFamily="Helvetica"
-                FontSize="13"
+                FontSize="14"
                 Foreground="{Binding Path=ForegroundForStartStop}"
                 VerticalContentAlignment="Center" 
                 HorizontalContentAlignment="Center"
@@ -83,6 +83,25 @@
                 Command="{Binding Path=SettingsCommand}"
                 ToolTip="Settings"
                 Foreground="{Binding Path=ForegroundForSettings}"/>
+
+            <!--<Label Content="Shortcut: CTRL +"
+                   FontSize="13"
+                   Margin="4,30,87,0"
+                   VerticalAlignment="Top" Height="27"/>-->
+
+            <!--<ComboBox Background="LightGray"
+                      Margin="105,30,0,0"
+                      VerticalAlignment="Top" Height="27">
+                <ComboBoxItem Content="A"
+                              VerticalContentAlignment="Center"
+                              HorizontalContentAlignment="Center"/>
+                <ComboBoxItem Content="S"
+                              VerticalContentAlignment="Center"
+                              HorizontalContentAlignment="Center"/>
+                <ComboBoxItem Content="Q"
+                              VerticalContentAlignment="Center"
+                              HorizontalContentAlignment="Center"/>
+            </ComboBox>-->
 
         </Grid>
     </Border>
