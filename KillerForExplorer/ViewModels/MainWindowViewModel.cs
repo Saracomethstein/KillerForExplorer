@@ -100,6 +100,7 @@ namespace KillerForExplorer.ViewModels
             SettingsButtonText = "⚙";
             ForegroundForSettings = "Black";
             ForegroundForStartStop = "Green";
+            ShortcutSymbol = "A";
         }
 
         #region Command
