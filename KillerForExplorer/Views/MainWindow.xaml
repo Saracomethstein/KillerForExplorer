@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:KillerForExplorer.ViewModels"
         mc:Ignorable="d"
         Title="Killer"
-        Height="100"
+        Height="30"
         Width="200"
         WindowStyle="None"
         WindowStartupLocation="CenterScreen"
@@ -24,30 +24,43 @@
     <Grid>
 
         <Label Style="{DynamicResource MainLabelStyle}"
-               Margin="0,0,0,80"
+               Margin="0,0,0,0"
                MouseLeftButtonDown="Label_MouseLeftButtonDown"/>
 
         <Button Style="{DynamicResource ExitButtonStyle}"
-                Margin="180,0,0,80"
+                Margin="170,0,0,0"
                 Content="X"
+                VerticalContentAlignment="Center"
+                HorizontalContentAlignment="Center"
                 Command="{Binding Path=ExitAppCommand}"/>
 
         <Button Style="{DynamicResource MainButtonStyle}"
-                Margin="160,0,20,80"
+                Margin="140,0,30,0"
                 Content="_"
+                VerticalContentAlignment="Center"
+                HorizontalContentAlignment="Center"
                 Command="{Binding Path=MiniAppCommand}"/>
 
         <Button Style="{DynamicResource MainButtonStyle}"
-                Margin="140,0,40,80"
+                Margin="110,0,60,0"
                 Content="↷"
+                VerticalContentAlignment="Center"
+                HorizontalContentAlignment="Center"
                 Command="{Binding Path=MiniToTrayCommand}"/>
 
         <Button Style="{DynamicResource MainButtonStyle}"
-                Margin="10,30,10,10"
+                Margin="30,0,140,0"
                 FontFamily="Helvetica"
-                FontSize="20"
+                VerticalContentAlignment="Center"
+                HorizontalContentAlignment="Center"
                 Content="{Binding Path=ButtonText}"
                 Command="{Binding Path=KillerAndStartExplorerCommand}"/>
+
+        <Button Style="{DynamicResource MainButtonStyle}"
+                Margin="0,0,170,0"
+                Content="S"
+                VerticalContentAlignment="Center"
+                HorizontalContentAlignment="Center"/>
 
     </Grid>
 </Window>
