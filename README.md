@@ -13,17 +13,17 @@ The program is very simple, with just two lines for the main functionality:
 1. Disabling explorer.exe
 ```csharp
 private void KillerExplorer()
-        {
-            Process.Start(@"C:\Windows\System32\taskkill.exe", @"/F /IM explorer.exe");
-        }
+{
+    Process.Start(@"C:\Windows\System32\taskkill.exe", @"/F /IM explorer.exe");
+}
 ```
 
 2. Enabling explorer.exe
 ```csharp
 private void StartExplorer()
-        {
-            Process.Start(@"C:\Windows\explorer");
-        }
+{
+    Process.Start(@"C:\Windows\explorer");
+}
 ```
 The rest of the code only includes the visual components of the application.
 
