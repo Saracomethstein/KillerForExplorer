@@ -36,7 +36,7 @@
 
             <Button Style="{DynamicResource ExitButtonStyle}"
                 Margin="170,0,0,0"
-                Content="X"
+                Content="🗙"
                 VerticalAlignment="Top"
                 VerticalContentAlignment="Center"
                 HorizontalContentAlignment="Center"
@@ -46,7 +46,7 @@
             <Button Style="{DynamicResource MainButtonStyle}"
                 Margin="140,0,30,0"
                 VerticalAlignment="Top"
-                Content="_"
+                Content="🗕"
                 VerticalContentAlignment="Center"
                 HorizontalContentAlignment="Center"
                 Command="{Binding Path=MiniAppCommand}"
@@ -55,7 +55,7 @@
             <Button Style="{DynamicResource MainButtonStyle}"
                 Margin="110,0,60,0"
                 VerticalAlignment="Top"
-                Content="↷"
+                Content="▽"
                 FontSize="14"
                 VerticalContentAlignment="Center"
                 HorizontalContentAlignment="Center"
@@ -83,25 +83,6 @@
                 Command="{Binding Path=SettingsCommand}"
                 ToolTip="Settings"
                 Foreground="{Binding Path=ForegroundForSettings}"/>
-
-            <!--<Label Content="Shortcut: CTRL +"
-                   FontSize="13"
-                   Margin="4,30,87,0"
-                   VerticalAlignment="Top" Height="27"/>-->
-
-            <!--<ComboBox Background="LightGray"
-                      Margin="105,30,0,0"
-                      VerticalAlignment="Top" Height="27">
-                <ComboBoxItem Content="A"
-                              VerticalContentAlignment="Center"
-                              HorizontalContentAlignment="Center"/>
-                <ComboBoxItem Content="S"
-                              VerticalContentAlignment="Center"
-                              HorizontalContentAlignment="Center"/>
-                <ComboBoxItem Content="Q"
-                              VerticalContentAlignment="Center"
-                              HorizontalContentAlignment="Center"/>
-            </ComboBox>-->
 
         </Grid>
     </Border>
