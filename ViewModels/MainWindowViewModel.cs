@@ -168,6 +168,65 @@ namespace KillerForExplorer.ViewModels
             }
         }
 
+        private bool IsProcessRunning(string processName)
+        {
+            Process[] processes = Process.GetProcessesByName(processName);
+            return processes.Length > 0;
+        }
+
+        private void StartProcess()
+        {
+            try
+            {
+                Process.Start(@"C:\Windows\explorer");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error when starting the process: {ex.Message}");
+            }
+        }
+
+        private void KillerExplorer()
+        {
+            Process.Start(@"C:\Windows\System32\taskkill.exe", @"/F /IM explorer.exe");
+        }
+
+        private void StartExplorer()
+        {
+            Process.Start(@"C:\Windows\explorer");
+        }
+
+        #region Working with Windows
+
+        private void MiniApplication()
+        {
+            var window = System.Windows.Application.Current.Windows[0];
+            if (window != null)
+            {
+                window.WindowState = WindowState.Minimized;
+            }
+        }
+
+        private void MiniToTray()
+        {
+            TrayManager trayManager = new TrayManager(Application.Current.MainWindow as MainWindow);
+            if (trayManager != null)
+            {
+                trayManager.ToggleTrayVisibility();
+            }
+        }
+
+        private void ExitApploication()
+        {
+            string processName = "explorer";
+
+            if (IsProcessRunning(processName) == false)
+            {
+                StartProcess();
+            }
+            Process.GetCurrentProcess().Kill();
+        }
+
         private void OpenSettingsWindow()
         {
             var window = System.Windows.Application.Current.Windows[0];
@@ -228,61 +287,6 @@ namespace KillerForExplorer.ViewModels
             storyboard.Begin();
         }
 
-        private void MiniToTray()
-        {
-            TrayManager trayManager = new TrayManager(Application.Current.MainWindow as MainWindow);
-            if(trayManager != null)
-            {
-                trayManager.ToggleTrayVisibility();
-            }
-        }
-
-        private void ExitApploication()
-        {
-            string processName = "explorer";
-
-            if (IsProcessRunning(processName) == false)
-            {
-                StartProcess();
-            }
-            Process.GetCurrentProcess().Kill();
-        }
-
-        private bool IsProcessRunning(string processName)
-        {
-            Process[] processes = Process.GetProcessesByName(processName);
-            return processes.Length > 0;
-        }
-
-        private void StartProcess()
-        {
-            try
-            {
-                Process.Start(@"C:\Windows\explorer");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Ошибка при запуске процесса: {ex.Message}");
-            }
-        }
-
-        private void MiniApplication()
-        {
-            var window = System.Windows.Application.Current.Windows[0];
-            if (window != null)
-            {
-                window.WindowState = WindowState.Minimized;
-            }
-        }
-
-        private void KillerExplorer()
-        {
-            Process.Start(@"C:\Windows\System32\taskkill.exe", @"/F /IM explorer.exe");
-        }
-
-        private void StartExplorer()
-        {
-            Process.Start(@"C:\Windows\explorer");
-        }
+        #endregion
     }
 }
