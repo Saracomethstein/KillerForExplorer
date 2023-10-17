@@ -1,0 +1,108 @@
+﻿<Window Style="{DynamicResource MainWindowStyle}"
+        x:Class="KillerForExplorer.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:KillerForExplorer.ViewModels"
+        mc:Ignorable="d"
+        Title="Killer"
+        Height="30"
+        Width="200"
+        WindowStyle="None"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize"
+        AllowsTransparency="True"
+        Background="Transparent">
+
+    <Window.DataContext>
+        <local:MainWindowViewModel/>
+    </Window.DataContext>
+
+    <Window.InputBindings>
+        <KeyBinding Command="{Binding Path=KillerAndStartExplorerCommand}"
+                    Key="{Binding Path=ShortcutSymbol}" Modifiers="Ctrl"/>
+    </Window.InputBindings>
+
+    <Border CornerRadius="10"
+            BorderBrush="LightGray"
+            BorderThickness="4">
+
+        <Grid>
+
+            <Label Style="{DynamicResource MainLabelStyle}"
+               Margin="0,0,0,0"
+               MouseLeftButtonDown="Label_MouseLeftButtonDown"/>
+
+            <Button Style="{DynamicResource ExitButtonStyle}"
+                Margin="170,0,0,0"
+                Content="X"
+                VerticalAlignment="Top"
+                VerticalContentAlignment="Center"
+                HorizontalContentAlignment="Center"
+                Command="{Binding Path=ExitAppCommand}"
+                ToolTip="Exit"/>
+
+            <Button Style="{DynamicResource MainButtonStyle}"
+                Margin="140,0,30,0"
+                VerticalAlignment="Top"
+                Content="_"
+                VerticalContentAlignment="Center"
+                HorizontalContentAlignment="Center"
+                Command="{Binding Path=MiniAppCommand}"
+                ToolTip="Minimize"/>
+
+            <Button Style="{DynamicResource MainButtonStyle}"
+                Margin="110,0,60,0"
+                VerticalAlignment="Top"
+                Content="↷"
+                FontSize="14"
+                VerticalContentAlignment="Center"
+                HorizontalContentAlignment="Center"
+                Command="{Binding Path=MiniToTrayCommand}"
+                ToolTip="Minimize to tray"/>
+
+            <Button Style="{DynamicResource MainButtonStyle}"
+                Margin="30,0,140,0"
+                VerticalAlignment="Top"
+                FontFamily="Helvetica"
+                FontSize="14"
+                Foreground="{Binding Path=ForegroundForStartStop}"
+                VerticalContentAlignment="Center" 
+                HorizontalContentAlignment="Center"
+                Content="{Binding Path=StartStopButtonText}"
+                Command="{Binding Path=KillerAndStartExplorerCommand}"
+                ToolTip="Start/Stop"/>
+
+            <Button Style="{DynamicResource MainButtonStyle}"
+                Margin="0,0,170,0"
+                VerticalAlignment="Top"
+                Content="{Binding Path=SettingsButtonText}"
+                VerticalContentAlignment="Center"
+                HorizontalContentAlignment="Center"
+                Command="{Binding Path=SettingsCommand}"
+                ToolTip="Settings"
+                Foreground="{Binding Path=ForegroundForSettings}"/>
+
+            <!--<Label Content="Shortcut: CTRL +"
+                   FontSize="13"
+                   Margin="4,30,87,0"
+                   VerticalAlignment="Top" Height="27"/>-->
+
+            <!--<ComboBox Background="LightGray"
+                      Margin="105,30,0,0"
+                      VerticalAlignment="Top" Height="27">
+                <ComboBoxItem Content="A"
+                              VerticalContentAlignment="Center"
+                              HorizontalContentAlignment="Center"/>
+                <ComboBoxItem Content="S"
+                              VerticalContentAlignment="Center"
+                              HorizontalContentAlignment="Center"/>
+                <ComboBoxItem Content="Q"
+                              VerticalContentAlignment="Center"
+                              HorizontalContentAlignment="Center"/>
+            </ComboBox>-->
+
+        </Grid>
+    </Border>
+</Window>
